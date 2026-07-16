@@ -1,26 +1,15 @@
-/* ===================================================
-   ETERNA
-   Portada Oficial 1.0
-   FROZEN v1.0
-=================================================== */
+document.addEventListener("DOMContentLoaded", function () {
 
-document.addEventListener("DOMContentLoaded", () => {
+    const boton = document.getElementById("startButton");
 
-    const startButton = document.getElementById("startButton");
+    if (boton) {
 
-    startButton.addEventListener("click", () => {
+        boton.onclick = function () {
 
-        document.body.classList.add("fade-out");
+            alert("¡Funciona!");
 
-        console.log("Comenzar ETERNA");
+        };
 
-        /*
-            Aquí comenzará la Escena 1.
-
-            En Sprint 2 conectaremos esta acción
-            con el SceneManager.
-        */
-
-    });
+    }
 
 });
