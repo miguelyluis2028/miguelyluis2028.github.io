@@ -1,134 +1,43 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>ETERNA</title>
 
-<style>
+<link rel="stylesheet" href="style.css">
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-body{
-background:#000;
-color:#d8d8d8;
-height:100vh;
-display:flex;
-justify-content:center;
-align-items:center;
-font-family:Georgia, serif;
-overflow:hidden;
-}
-
-.container{
-text-align:center;
-animation:fadeIn 2.5s ease;
-}
-
-.monogram{
-font-size:60px;
-margin-bottom:30px;
-opacity:.9;
-}
-
-h1{
-font-size:54px;
-letter-spacing:10px;
-font-weight:300;
-margin-bottom:10px;
-}
-
-h2{
-font-size:20px;
-font-weight:300;
-letter-spacing:4px;
-margin-bottom:60px;
-opacity:.8;
-}
-
-.names{
-font-size:22px;
-letter-spacing:3px;
-margin-bottom:15px;
-}
-
-.date{
-font-size:18px;
-opacity:.7;
-margin-bottom:90px;
-}
-
-.touch{
-font-size:14px;
-letter-spacing:4px;
-opacity:.5;
-animation:pulse 2s infinite;
-}
-
-@keyframes fadeIn{
-
-from{
-opacity:0;
-transform:translateY(15px);
-}
-
-to{
-opacity:1;
-transform:translateY(0);
-}
-
-}
-
-@keyframes pulse{
-
-0%{
-opacity:.2;
-}
-
-50%{
-opacity:.8;
-}
-
-100%{
-opacity:.2;
-}
-
-}
-
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<div class="container">
+<div class="cover">
 
-<div class="monogram">
-✧
-</div>
+    <img src="monograma.png" class="monograma" alt="Monograma">
 
-<h1>ETERNA</h1>
+    <h1>ETERNA</h1>
 
-<h2>The Wedding Experience</h2>
+    <h2>The Wedding Experience</h2>
 
-<div class="names">
-Miguel & Luis
-</div>
+    <div class="names">
+        Miguel & Luis
+    </div>
 
-<div class="date">
-15 de enero de 2028
-</div>
+    <div class="date">
+        15 de enero de 2028
+    </div>
 
-<div class="touch">
-TOCA PARA COMENZAR
-</div>
+    <div class="touch">
+        TOCA PARA COMENZAR
+    </div>
 
 </div>
+
+<script src="script.js"></script>
 
 </body>
 
