@@ -14,7 +14,13 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
             cover.remove();
 
-prologue.innerHTML = "<h1 style='color:white;font-size:60px;'>¡FUNCIONA!</h1>";
+prologue.innerHTML = `
+<div class="center">
+    <p class="quote">
+        Toda gran historia de amor merece ser contada...
+    </p>
+</div>
+`;
 
 prologue.style.display = "flex";
 prologue.style.opacity = "1";
