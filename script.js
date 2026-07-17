@@ -1,15 +1,21 @@
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const boton = document.getElementById("startButton");
+    const button = document.getElementById("startButton");
+    const cover = document.getElementById("cover");
+    const prologue = document.getElementById("prologue");
 
-    if (boton) {
+    if (!button) return;
 
-        boton.onclick = function () {
+    button.addEventListener("click", () => {
 
-            alert("¡Funciona!");
+        cover.style.opacity = "0";
+        cover.style.transition = "opacity 2s ease";
 
-        };
+        setTimeout(() => {
+            cover.style.display = "none";
+            prologue.classList.add("active");
+        }, 2000);
 
-    }
+    });
 
 });
