@@ -12,7 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
         cover.style.transition = "opacity 2s ease";
 
         setTimeout(() => {
-            cover.style.display = "none";
+            cover.remove();
+
+prologue.innerHTML = "<h1 style='color:white;font-size:60px;'>¡FUNCIONA!</h1>";
+
 prologue.style.display = "flex";
 prologue.style.opacity = "1";
 prologue.classList.add("active");
