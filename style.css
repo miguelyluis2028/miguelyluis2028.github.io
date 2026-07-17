@@ -27,8 +27,8 @@ html,body{
     height:70px;
     background:transparent;
     border:none;
-    cursor:pointer;
- 
+    cursor:pointer; 
+ }
 .screen{
     display:none;
     width:100%;
