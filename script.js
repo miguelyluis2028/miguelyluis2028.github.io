@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
         cover.style.transition = "opacity 2s ease";
 
         setTimeout(() => {
-            cover.remove();
+            cover.style.display = "none";
 
 prologue.innerHTML = `
 <div class="center">
