@@ -47,7 +47,7 @@ html,body{
 }
 
 #prologue{
-    display:flex;
+    display:none;
     opacity:0;
     transition:opacity 2s ease;
     background:#000;
