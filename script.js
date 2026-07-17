@@ -13,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         setTimeout(() => {
             cover.style.display = "none";
-            prologue.classList.add("active");
+prologue.style.display = "flex";
+prologue.style.opacity = "1";
+prologue.classList.add("active");
         }, 2000);
 
     });
