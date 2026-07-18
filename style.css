@@ -69,17 +69,23 @@ html,body{
     font-size:2.5rem;
     font-weight:400;
     background:linear-gradient(
-180deg,
-#ffffff 0%,
-#f8f8f8 10%,
-#d8d8d8 30%,
-#8f8f8f 50%,
-#ececec 70%,
-#ffffff 100%
+    90deg,
+    #9b9b9b 0%,
+    #fdfdfd 20%,
+    #ffffff 35%,
+    #b5b5b5 50%,
+    #ffffff 65%,
+    #fdfdfd 80%,
+    #9b9b9b 100%
 );
+
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+background-size: 200% 100%;
+animation:
+    shine 6s linear infinite,
+    fadeText 3s ease forwards;
     letter-spacing:8px;
     text-align:center;
     max-width:1300px;
@@ -92,7 +98,7 @@ html,body{
     
     opacity:0;
     
-    animation:fadeText 3s ease forwards;
+    
 }
 .center{
     width:100%;
@@ -102,7 +108,6 @@ html,body{
     align-items:center;
 }
 @keyframes fadeText{
-
     from{
         opacity:0;
         transform:translateY(20px);
@@ -112,5 +117,14 @@ html,body{
         opacity:1;
         transform:translateY(0);
     }
+}
 
+@keyframes shine{
+    0%{
+        background-position:-200% 0;
+    }
+
+    100%{
+        background-position:200% 0;
+    }
 }
