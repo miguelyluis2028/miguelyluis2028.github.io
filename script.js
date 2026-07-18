@@ -25,8 +25,25 @@ prologue.innerHTML = `
 prologue.style.display = "flex";
 prologue.style.opacity = "1";
 prologue.classList.add("active");
+setTimeout(() => {
+
+    prologue.style.opacity = "0";
+
+    setTimeout(() => {
+
+        prologue.style.display = "none";
+
+        const act1 = document.getElementById("act1");
+
+if (act1) {
+    act1.classList.add("active");
+}
+
+    }, 2000);
+
+}, 7000);
         }, 2000);
 
     });
 
-});
+});  
