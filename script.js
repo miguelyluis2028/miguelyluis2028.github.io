@@ -32,7 +32,7 @@ setTimeout(() => {
     setTimeout(() => {
 
         prologue.style.display = "none";
-
+        prologue.classList.remove("active");
         const act1 = document.getElementById("act1");
 
 if (act1) {
