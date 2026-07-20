@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentPage = 1;
     const totalPages = 20;
-
+let touchStartX = 0;
+let touchEndX = 0;
     function showPage(page){
 
         pageImage.classList.remove("pageFade");
@@ -93,5 +94,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
     });
+book.addEventListener("touchstart", (e) => {
+
+    touchStartX = e.changedTouches[0].screenX;
+
+});
+
+book.addEventListener("touchend", (e) => {
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    const distance = touchStartX - touchEndX;
+
+    if (Math.abs(distance) < 50) return;
+
+    if (distance > 0) {
+
+        if (currentPage < totalPages) {
+
+            currentPage++;
+
+            showPage(currentPage);
+
+        }
+
+    } else {
+ 
+        if (currentPage > 1) {
+
+            currentPage--;
+
+            showPage(currentPage);
+
+        }
+
+    }
 
 });
