@@ -159,24 +159,22 @@ body{
     height:100%;
     object-fit:contain;
 
-    animation:pageFade 1.2s ease;
+    animation:pageTurn .45s ease;
 
 }
 
-@keyframes pageFade{
+    @keyframes pageTurn{
 
-    from{
-
+    0%{
         opacity:0;
-        transform:scale(.985);
-
+        transform:translateX(25px) scale(.985);
+        filter:blur(2px);
     }
 
-    to{
-
+    100%{
         opacity:1;
-        transform:scale(1);
-
+        transform:translateX(0) scale(1);
+        filter:blur(0);
     }
 
 }
