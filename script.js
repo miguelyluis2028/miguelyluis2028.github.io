@@ -4,7 +4,8 @@
     const cover = document.getElementById("cover");
     const prologue = document.getElementById("prologue");
     const book = document.getElementById("book");
-    const pageImage = document.getElementById("pageImage");
+    const frontImage = document.getElementById("frontImage");
+    const backImage = document.getElementById("backImage");
     const music = document.getElementById("bgMusic");
 
     let currentPage = 1;
@@ -15,19 +16,27 @@
 
     function showPage(page) {
 
-        pageImage.style.opacity = "0";
+    frontImage.parentElement.style.transform = "rotateY(-90deg)";
 
-        setTimeout(() => {
+    setTimeout(() => {
 
-            pageImage.src = `images/libro/pagina-${page}.png`;
+        frontImage.src = `images/libro/pagina-${page}.png`;
 
-            pageImage.onload = () => {
-                pageImage.style.opacity = "1";
-            };
+        if (page < totalPages) {
+            backImage.src = `images/libro/pagina-${page + 1}.png`;
+        } else {
+            backImage.src = `images/libro/pagina-${page}.png`;
+        }
 
-        }, 120);
+        frontImage.onload = () => {
 
-    }
+            frontImage.parentElement.style.transform = "rotateY(0deg)";
+
+        };
+
+    },250);
+
+}
 
     if (startButton) {
 
