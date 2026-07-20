@@ -426,3 +426,134 @@ opacity:.35;
 }
 
 }
+/*=========================
+CONTRAPORTADA
+=========================*/
+
+#backCover{
+
+    flex-direction:column;
+    background:#050505;
+    opacity:0;
+    transition:opacity 1.5s ease;
+
+}
+
+#backCover.active{
+
+    opacity:1;
+
+}
+
+.backCoverContent{
+
+    width:340px;
+    height:480px;
+
+    border-radius:8px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #111,
+        #000 50%,
+        #1b1b1b
+    );
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.65);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    text-align:center;
+
+    padding:40px;
+
+}
+
+.backCoverContent h1{
+
+    color:#d9d9d9;
+    letter-spacing:8px;
+    font-size:2rem;
+
+}
+
+.backCoverContent h2{
+
+    margin-top:15px;
+    color:#8d8d8d;
+    letter-spacing:3px;
+    font-size:.9rem;
+
+}
+
+.backCoverContent p{
+
+    margin-top:40px;
+    color:#bfbfbf;
+    line-height:1.8;
+    letter-spacing:2px;
+
+}
+/*=========================
+ANIMACIONES DEL LIBRO
+=========================*/
+
+#closedBook3D{
+
+    cursor:pointer;
+
+}
+
+#closedBook3D:hover{
+
+    transform:
+        rotateY(-8deg)
+        rotateX(2deg)
+        scale(1.02);
+
+}
+
+#closedBook3D.opening{
+
+    animation:openBook 1.3s ease forwards;
+
+}
+
+@keyframes openBook{
+
+    0%{
+
+        transform:
+            rotateY(0deg)
+            scale(1);
+
+        opacity:1;
+
+    }
+
+    60%{
+
+        transform:
+            rotateY(-28deg)
+            scale(1.03);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            rotateY(-40deg)
+            scale(.98);
+
+        opacity:0;
+
+    }
+
+}
