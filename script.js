@@ -4,6 +4,8 @@
     const cover = document.getElementById("cover");
     const prologue = document.getElementById("prologue");
     const book = document.getElementById("book");
+    const closedBook = document.getElementById("closedBook");
+const closedBook3D = document.getElementById("closedBook3D");
     const frontImage = document.getElementById("frontImage");
     const backImage = document.getElementById("backImage");
     const music = document.getElementById("bgMusic");
@@ -61,10 +63,8 @@
                     setTimeout(() => {
 
                         prologue.classList.remove("active");
-                        book.classList.add("active");
 
-                        showPage(currentPage);
-
+closedBook.classList.add("active");
                     }, 2000);
 
                 }, 6000);
@@ -140,5 +140,20 @@
         }
 
     });
+closedBook.addEventListener("click", () => {
 
+    closedBook3D.style.transform =
+        "rotateY(-115deg)";
+
+    setTimeout(() => {
+
+        closedBook.classList.remove("active");
+
+        book.classList.add("active");
+
+        showPage(currentPage);
+
+    },1100);
+
+});
 });
