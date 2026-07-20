@@ -150,9 +150,35 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
+    position:relative;
+    overflow:hidden;
+}
+#bookContainer::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+    top:0;
+
+    transform:translateX(-50%);
+
+    width:16px;
+    height:100%;
+
+    background:linear-gradient(
+        to right,
+        rgba(255,255,255,.05),
+        rgba(0,0,0,.55),
+        rgba(255,255,255,.05)
+    );
+
+    z-index:20;
+
+    pointer-events:none;
 
 }
-
 #pageImage{
 
     width:100%;
