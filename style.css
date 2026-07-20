@@ -1,22 +1,46 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
 
-html,body{
+html,
+body{
     width:100%;
     height:100%;
     overflow:hidden;
     background:#000;
+    font-family:"Cinzel",serif;
 }
 
-#cover{
+/* ==========================
+   PANTALLAS
+========================== */
+
+.screen{
     position:fixed;
     inset:0;
+    display:none;
+    justify-content:center;
+    align-items:center;
+    background:#000;
+}
+
+.screen.active{
+    display:flex;
+}
+
+/* ==========================
+   PORTADA
+========================== */
+
+#cover{
     background:#000 url("Cover.png") center center no-repeat;
     background-size:contain;
+    opacity:1;
+    transition:opacity 2s ease;
 }
 
 #startButton{
@@ -26,146 +50,156 @@ html,body{
     transform:translate(-50%,-50%);
     width:320px;
     height:70px;
-    background:transparent;
     border:none;
-    cursor:pointer; 
- }
-.screen{
-    display:none;
-    width:100%;
-    height:100%;
+    background:transparent;
+    cursor:pointer;
 }
 
-.screen.active{
-    display:flex;
-    width:100%;
-    height:100%;
-}
-
-
-#cover{
-    opacity:1;
-}
+/* ==========================
+   PROLOGO
+========================== */
 
 #prologue{
-    display:none;
     opacity:0;
     transition:opacity 2s ease;
-    background:#000;
-    width:100%;
-    height:100%;
 }
 
 #prologue.active{
-    display:flex;
     opacity:1;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-}
-
-.quote{
-    font-family: "Cinzel", serif;
-    font-size:2.5rem;
-    font-weight:400;
-    background:linear-gradient(
-    90deg,
-    #9b9b9b 0%,
-    #fdfdfd 20%,
-    #ffffff 35%,
-    #b5b5b5 50%,
-    #ffffff 65%,
-    #fdfdfd 80%,
-    #9b9b9b 100%
-);
-
-
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-background-size: 200% 100%;
-animation:
-    shine 6s linear infinite,
-    fadeText 3s ease forwards;
-    letter-spacing:8px;
-    text-align:center;
-    max-width:1300px;
-    padding:40px;
-
-    text-shadow:
-0 1px 0 rgba(255,255,255,.55),
-0 2px 4px rgba(255,255,255,.20),
-0 8px 18px rgba(0,0,0,.55);
-    
-    opacity:0;
-    
-    
-}
-
-
-
-.quote span{
-    position:relative;
-    display:inline-block;
-    overflow:hidden;
-}
-.quote span::after{
-    content:"";
-    position:absolute;
-    top:-60%;
-    left:-150%;
-    width:40%;
-    height:220%;
-
-    background:linear-gradient(
-        90deg,
-        transparent 0%,
-        rgba(255,255,255,.85) 50%,
-        transparent 100%
-    );
-
-    transform:rotate(25deg);
-
-    animation:lightSweep 4.5s linear infinite;
-
-    pointer-events:none;
 }
 
 .center{
     width:100%;
-    height:100%;
     display:flex;
     justify-content:center;
     align-items:center;
+    padding:40px;
 }
+
+.quote{
+
+    font-size:2.4rem;
+    letter-spacing:6px;
+    text-align:center;
+    max-width:1200px;
+
+    background:linear-gradient(
+        90deg,
+        #8b8b8b,
+        #ffffff,
+        #bfbfbf,
+        #ffffff,
+        #8b8b8b
+    );
+
+    background-size:200%;
+
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+
+    animation:
+        fadeText 2s ease,
+        shine 8s linear infinite;
+
+}
+
 @keyframes fadeText{
+
     from{
         opacity:0;
-        transform:translateY(20px);
+        transform:translateY(25px);
     }
 
     to{
         opacity:1;
         transform:translateY(0);
     }
+
 }
 
 @keyframes shine{
-    0%{
-        background-position:-200% 0;
-    }
-
-    100%{
-        background-position:200% 0;
-    }
-}
-@keyframes lightSweep{
 
     from{
-        left:-150%;
+        background-position:-200%;
     }
 
     to{
-        left:180%;
+        background-position:200%;
+    }
+
+}
+
+/* ==========================
+   LIBRO
+========================== */
+
+#book{
+    opacity:0;
+    transition:opacity 1.5s ease;
+}
+
+#book.active{
+    opacity:1;
+}
+
+#bookContainer{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+}
+
+#pageImage{
+
+    width:100%;
+    height:100%;
+    object-fit:contain;
+
+    animation:pageFade 1.2s ease;
+
+}
+
+@keyframes pageFade{
+
+    from{
+
+        opacity:0;
+        transform:scale(.985);
+
+    }
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+
+/* ==========================
+   RESPONSIVE
+========================== */
+
+@media (max-width:768px){
+
+    .quote{
+
+        font-size:1.5rem;
+        letter-spacing:3px;
+        padding:20px;
+
+    }
+
+    #startButton{
+
+        width:260px;
+        height:65px;
+
     }
 
 }

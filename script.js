@@ -1,49 +1,97 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const button = document.getElementById("startButton");
+    const startButton = document.getElementById("startButton");
     const cover = document.getElementById("cover");
     const prologue = document.getElementById("prologue");
+    const book = document.getElementById("book");
+    const pageImage = document.getElementById("pageImage");
+    const music = document.getElementById("bgMusic");
 
-    if (!button) return;
+    let currentPage = 1;
+    const totalPages = 20;
 
-    button.addEventListener("click", () => {
+    function showPage(page){
 
-        cover.style.opacity = "0";
-        cover.style.transition = "opacity 2s ease";
+        pageImage.classList.remove("pageFade");
 
-        setTimeout(() => {
-            cover.style.display = "none";
+        void pageImage.offsetWidth;
 
-prologue.innerHTML = `
-<div class="center">
-    <p class="quote">
-        Toda gran historia de amor merece ser contada...
-    </p>
-</div>
-`;
+        pageImage.src = `images/libro/pagina-${page}.png`;
 
-prologue.style.display = "flex";
-prologue.style.opacity = "1";
-prologue.classList.add("active");
-setTimeout(() => {
+        pageImage.classList.add("pageFade");
 
-    prologue.style.opacity = "0";
+    }
 
-    setTimeout(() => {
+    if(startButton){
 
-        prologue.style.display = "none";
-        prologue.classList.remove("active");
-        const act1 = document.getElementById("act1");
+        startButton.addEventListener("click", () => {
 
-if (act1) {
-    act1.classList.add("active");
-}
+            if(music){
 
-    }, 2000);
+                music.volume = 0.35;
 
-}, 7000);
-        }, 2000);
+                music.play().catch(()=>{});
+
+            }
+
+            cover.style.opacity = "0";
+
+            setTimeout(()=>{
+
+                cover.classList.remove("active");
+
+                prologue.classList.add("active");
+
+                setTimeout(()=>{
+
+                    prologue.style.opacity = "0";
+
+                    setTimeout(()=>{
+
+                        prologue.classList.remove("active");
+
+                        book.classList.add("active");
+
+                        showPage(currentPage);
+
+                    },2000);
+
+                },6000);
+
+            },2000);
+
+        });
+
+    }
+
+    document.addEventListener("click",(e)=>{
+
+        if(!book.classList.contains("active")) return;
+
+        const half = window.innerWidth / 2;
+
+        if(e.clientX > half){
+
+            if(currentPage < totalPages){
+
+                currentPage++;
+
+                showPage(currentPage);
+
+            }
+
+        }else{
+
+            if(currentPage > 1){
+
+                currentPage--;
+
+                showPage(currentPage);
+
+            }
+
+        }
 
     });
 
-});  
+});
