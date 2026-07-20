@@ -279,3 +279,150 @@ body{
         drop-shadow(0 20px 35px rgba(0,0,0,.45));
 
 }
+/*=========================
+LIBRO CERRADO
+=========================*/
+
+#closedBook{
+
+    flex-direction:column;
+    perspective:2200px;
+    background:#050505;
+
+}
+
+#closedBook3D{
+
+    width:340px;
+    height:480px;
+
+    position:relative;
+
+    transform-style:preserve-3d;
+
+    transition:transform 1.3s;
+
+}
+
+.bookShadow{
+
+    position:absolute;
+
+    width:360px;
+    height:40px;
+
+    left:-10px;
+    bottom:-28px;
+
+    background:rgba(0,0,0,.65);
+
+    filter:blur(20px);
+
+    border-radius:50%;
+
+}
+
+.bookPages{
+
+    position:absolute;
+
+    right:-12px;
+    top:10px;
+
+    width:12px;
+    height:460px;
+
+    background:linear-gradient(
+        to right,
+        #ffffff,
+        #d9d9d9,
+        #bfbfbf
+    );
+
+    border-radius:0 6px 6px 0;
+
+}
+
+.bookCover{
+
+    position:absolute;
+
+    inset:0;
+
+    border-radius:8px;
+
+    background:
+    linear-gradient(
+        145deg,
+        #111,
+        #000 50%,
+        #1b1b1b
+    );
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.65);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.bookLogo{
+
+    width:140px;
+
+    margin-bottom:25px;
+
+    filter:
+    drop-shadow(0 0 10px rgba(255,255,255,.25));
+
+}
+
+.bookCover h1{
+
+    color:#d9d9d9;
+
+    letter-spacing:8px;
+
+    font-size:2rem;
+
+}
+
+.bookCover h2{
+
+    margin-top:12px;
+
+    color:#8d8d8d;
+
+    font-size:.9rem;
+
+    letter-spacing:3px;
+
+}
+
+.tapMessage{
+
+    margin-top:45px;
+
+    color:#8a8a8a;
+
+    letter-spacing:3px;
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+50%{
+
+opacity:.35;
+
+}
+
+}
