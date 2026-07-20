@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
 
     const startButton = document.getElementById("startButton");
     const cover = document.getElementById("cover");
@@ -9,125 +9,127 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let currentPage = 1;
     const totalPages = 20;
-let touchStartX = 0;
-let touchEndX = 0;
-    function showPage(page){
 
-        pageImage.classList.remove("pageFade");
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-        void pageImage.offsetWidth;
+    function showPage(page) {
 
-        pageImage.src = `images/libro/pagina-${page}.png`;
+        pageImage.style.opacity = "0";
 
-        pageImage.classList.add("pageFade");
+        setTimeout(() => {
+
+            pageImage.src = `images/libro/pagina-${page}.png`;
+
+            pageImage.onload = () => {
+                pageImage.style.opacity = "1";
+            };
+
+        }, 120);
 
     }
 
-    if(startButton){
+    if (startButton) {
 
         startButton.addEventListener("click", () => {
 
-            if(music){
-
+            if (music) {
                 music.volume = 0.35;
-
-                music.play().catch(()=>{});
-
+                music.play().catch(() => {});
             }
 
             cover.style.opacity = "0";
 
-            setTimeout(()=>{
+            setTimeout(() => {
 
                 cover.classList.remove("active");
-
                 prologue.classList.add("active");
 
-                setTimeout(()=>{
+                setTimeout(() => {
 
                     prologue.style.opacity = "0";
 
-                    setTimeout(()=>{
+                    setTimeout(() => {
 
                         prologue.classList.remove("active");
-
                         book.classList.add("active");
 
                         showPage(currentPage);
 
-                    },2000);
+                    }, 2000);
 
-                },6000);
+                }, 6000);
 
-            },2000);
+            }, 2000);
 
         });
 
     }
 
-    document.addEventListener("click",(e)=>{
-
-        if(!book.classList.contains("active")) return;
-
-        const half = window.innerWidth / 2;
-
-        if(e.clientX > half){
-
-            if(currentPage < totalPages){
-
-                currentPage++;
-
-                showPage(currentPage);
-
-            }
-
-        }else{
-
-            if(currentPage > 1){
-
-                currentPage--;
-
-                showPage(currentPage);
-
-            }
-
-        }
-
-    });
-book.addEventListener("touchstart", (e) => {
-
-    touchStartX = e.changedTouches[0].screenX;
-
-});
-
-book.addEventListener("touchend", (e) => {
-
-    touchEndX = e.changedTouches[0].screenX;
-
-    const distance = touchStartX - touchEndX;
-
-    if (Math.abs(distance) < 50) return;
-
-    if (distance > 0) {
+    function nextPage() {
 
         if (currentPage < totalPages) {
 
             currentPage++;
-
-            showPage(currentPage);
-
-        }
-
-    } else {
- 
-        if (currentPage > 1) {
-
-            currentPage--;
-
             showPage(currentPage);
 
         }
 
     }
+
+    function previousPage() {
+
+        if (currentPage > 1) {
+
+            currentPage--;
+            showPage(currentPage);
+
+        }
+
+    }
+
+    document.addEventListener("click", (e) => {
+
+        if (!book.classList.contains("active")) return;
+
+        const half = window.innerWidth / 2;
+
+        if (e.clientX > half) {
+
+            nextPage();
+
+        } else {
+
+            previousPage();
+
+        }
+
+    });
+
+    book.addEventListener("touchstart", (e) => {
+
+        touchStartX = e.changedTouches[0].screenX;
+
+    });
+
+    book.addEventListener("touchend", (e) => {
+
+        touchEndX = e.changedTouches[0].screenX;
+
+        const distance = touchStartX - touchEndX;
+
+        if (Math.abs(distance) < 50) return;
+
+        if (distance > 0) {
+
+            nextPage();
+
+        } else {
+
+            previousPage();
+
+        }
+
+    });
 
 });
