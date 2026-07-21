@@ -13,7 +13,7 @@ const frontImage = document.getElementById("frontImage");
 const backImage = document.getElementById("backImage");
 
 const page = document.getElementById("page");
-const closedBook = document.getElementById("closedBook3D");
+const closedBook3D = document.getElementById("closedBook3D");
 
 const pages = [];
 
@@ -62,7 +62,7 @@ startButton.addEventListener("click", async ()=>{
 
 });
 
-closedBook.addEventListener("click",()=>{
+closedBook3D.addEventListener("click",()=>{
 
     cover.style.transform="rotateY(-165deg)";
 
