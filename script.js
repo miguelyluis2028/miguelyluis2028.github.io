@@ -74,9 +74,10 @@ startButton.addEventListener("click", async () => {
 
     setTimeout(() => {
 
-        showScreen(closedBook);
+    console.log("Mostrando libro");
+    showScreen(closedBook);
 
-    },7000);
+},7000);
 
 });
 // ==========================
