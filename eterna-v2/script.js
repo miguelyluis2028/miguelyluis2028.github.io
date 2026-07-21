@@ -68,11 +68,11 @@ closedBook3D.addEventListener("click",()=>{
 
     setTimeout(()=>{
 
-        current=0;
+   current = 0;
 
-        loadSpread();
+show(screens.book);
 
-        show(screens.closedBook);
+loadSpread();
 
     },1800);
 
