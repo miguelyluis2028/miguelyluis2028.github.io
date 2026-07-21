@@ -164,31 +164,11 @@ LIBRO CERRADO
 }
 
 #closedBook3D{
-
-    width:340px;
-
-    height:480px;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    background:linear-gradient(
-        145deg,
-        #111,
-        #000,
-        #1b1b1b
-    );
-
-    border-radius:8px;
-
-    box-shadow:
-        0 25px 45px rgba(0,0,0,.65);
-
+    position:relative;
+    width:360px;
+    height:500px;
+    perspective:2200px;
     cursor:pointer;
-
 }
 
 #closedBook3D img{
@@ -309,4 +289,60 @@ CONTRAPORTADA
 
     letter-spacing:2px;
 
+}
+.bookShadow{
+    position:absolute;
+    left:50%;
+    top:92%;
+    width:310px;
+    height:45px;
+    transform:translateX(-50%);
+    border-radius:50%;
+    background:rgba(0,0,0,.45);
+    filter:blur(18px);
+}
+.book3D{
+    position:relative;
+    width:100%;
+    height:100%;
+    transform-style:preserve-3d;
+}
+.bookSpine{
+    position:absolute;
+    left:-8px;
+    top:0;
+    width:16px;
+    height:100%;
+    background:#181818;
+    border-radius:8px 0 0 8px;
+}
+.bookCover{
+    position:absolute;
+    inset:0;
+    transform-origin:left center;
+    transition:transform 1.8s cubic-bezier(.22,.61,.36,1);
+    backface-visibility:hidden;
+    z-index:20;
+}
+
+.bookCover img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:
+        0 30px 70px rgba(0,0,0,.45);
+}
+.bookPages{
+    position:absolute;
+    inset:0;
+    overflow:hidden;
+    border-radius:12px;
+    background:#000;
+}
+
+.bookPages img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
 }

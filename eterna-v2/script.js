@@ -134,3 +134,11 @@ music.addEventListener("ended",()=>{
     music.play();
 
 });
+const closedBook = document.getElementById("closedBook3D");
+const cover = document.getElementById("bookCover");
+
+closedBook.addEventListener("click",()=>{
+
+    cover.style.transform="rotateY(-165deg)";
+
+});
