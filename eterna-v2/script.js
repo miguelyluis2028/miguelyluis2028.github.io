@@ -58,7 +58,7 @@ startButton.addEventListener("click", async ()=>{
 
         show(screens.closedBook);
 
-    },6000);
+    },10000);
 
 });
 
