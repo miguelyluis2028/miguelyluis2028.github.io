@@ -90,14 +90,50 @@ closedBook3D.addEventListener("click", () => {
 
     setTimeout(() => {
 
-        showScreen(book);
+       showScreen(book);
 
-        currentPage = 0;
+currentPage = 0;
 
-        frontImage.src = pages[currentPage];
-
-        backImage.src = pages[currentPage];
+showCurrentPage();
 
     },1200);
+
+});
+// ==========================
+// MOTOR 3.0
+// NAVEGACIÓN
+// ==========================
+
+function showCurrentPage() {
+
+    if (currentPage < 0) currentPage = 0;
+
+    if (currentPage >= pages.length) {
+
+        showScreen(backCover);
+        return;
+
+    }
+
+    frontImage.src = pages[currentPage];
+    backImage.src = pages[currentPage];
+
+}
+
+document.getElementById("book").addEventListener("click", () => {
+
+    currentPage++;
+
+    showCurrentPage();
+
+});
+
+backCover.addEventListener("click", () => {
+
+    currentPage = 0;
+
+    closedBook3D.classList.remove("opening");
+
+    showScreen(closedBook);
 
 });
