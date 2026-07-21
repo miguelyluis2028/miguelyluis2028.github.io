@@ -1,159 +1,102 @@
- document.addEventListener("DOMContentLoaded", () => {
+// ==========================
+// ETERNA
+// The Wedding Experience
+// Motor 2.0
+// ==========================
 
-    const startButton = document.getElementById("startButton");
-    const cover = document.getElementById("cover");
-    const prologue = document.getElementById("prologue");
-    const book = document.getElementById("book");
-    const closedBook = document.getElementById("closedBook");
+// Pantallas
+const cover = document.getElementById("cover");
+const prologue = document.getElementById("prologue");
+const closedBook = document.getElementById("closedBook");
+const book = document.getElementById("book");
+const backCover = document.getElementById("backCover");
+
+// Controles
+const startButton = document.getElementById("startButton");
 const closedBook3D = document.getElementById("closedBook3D");
-    const frontImage = document.getElementById("frontImage");
-    const backImage = document.getElementById("backImage");
-    const music = document.getElementById("bgMusic");
 
-    let currentPage = 1;
-    const totalPages = 20;
+// Libro
+const frontImage = document.getElementById("frontImage");
+const backImage = document.getElementById("backImage");
 
-    let touchStartX = 0;
-    let touchEndX = 0;
+// Música
+const bgMusic = document.getElementById("bgMusic");
 
-    function showPage(page) {
+// ==========================
+// PÁGINAS
+// ==========================
 
-    frontImage.parentElement.style.transform = "rotateY(-90deg)";
+const pages = [];
 
-    setTimeout(() => {
+for (let i = 1; i <= 20; i++) {
+    pages.push(`images/libro/pagina-${i}.png`);
+}
 
-        frontImage.src = `images/libro/pagina-${page}.png`;
+let currentPage = 0;
 
-        if (page < totalPages) {
-            backImage.src = `images/libro/pagina-${page + 1}.png`;
-        } else {
-            backImage.src = `images/libro/pagina-${page}.png`;
-        }
+// ==========================
+// UTILIDADES
+// ==========================
 
-        frontImage.onload = () => {
+function hideAll() {
 
-            frontImage.parentElement.style.transform = "rotateY(0deg)";
-
-        };
-
-    },250);
+    cover.classList.remove("active");
+    prologue.classList.remove("active");
+    closedBook.classList.remove("active");
+    book.classList.remove("active");
+    backCover.classList.remove("active");
 
 }
 
-    if (startButton) {
+function showScreen(screen) {
 
-        startButton.addEventListener("click", () => {
+    hideAll();
+    screen.classList.add("active");
 
-            if (music) {
-                music.volume = 0.35;
-                music.play().catch(() => {});
-            }
+}
+// ==========================
+// PORTADA
+// ==========================
 
-            cover.style.opacity = "0";
+startButton.addEventListener("click", async () => {
 
-            setTimeout(() => {
+    try{
+        await bgMusic.play();
+    }catch(e){}
 
-                cover.classList.remove("active");
-                prologue.classList.add("active");
-
-                setTimeout(() => {
-
-                    prologue.style.opacity = "0";
-
-                    setTimeout(() => {
-
-                        prologue.classList.remove("active");
-
-closedBook.classList.add("active");
-                    }, 2000);
-
-                }, 6000);
-
-            }, 2000);
-
-        });
-
-    }
-
-    function nextPage() {
-
-        if (currentPage < totalPages) {
-
-            currentPage++;
-            showPage(currentPage);
-
-        }
-
-    }
-
-    function previousPage() {
-
-        if (currentPage > 1) {
-
-            currentPage--;
-            showPage(currentPage);
-
-        }
-
-    }
-
-    document.addEventListener("click", (e) => {
-
-        if (!book.classList.contains("active")) return;
-
-        const half = window.innerWidth / 2;
-
-        if (e.clientX > half) {
-
-            nextPage();
-
-        } else {
-
-            previousPage();
-
-        }
-
-    });
-
-    book.addEventListener("touchstart", (e) => {
-
-        touchStartX = e.changedTouches[0].screenX;
-
-    });
-
-    book.addEventListener("touchend", (e) => {
-
-        touchEndX = e.changedTouches[0].screenX;
-
-        const distance = touchStartX - touchEndX;
-
-        if (Math.abs(distance) < 50) return;
-
-        if (distance > 0) {
-
-            nextPage();
-
-        } else {
-
-            previousPage();
-
-        }
-
-    });
-closedBook.addEventListener("click", () => {
-
-    closedBook3D.style.transform =
-        "rotateY(-115deg)";
+    cover.style.opacity = "0";
 
     setTimeout(() => {
 
-        closedBook.classList.remove("active");
+        showScreen(prologue);
 
-        book.classList.add("active");
+    },2000);
 
-        showPage(currentPage);
+    setTimeout(() => {
 
-    },1100);
+        showScreen(closedBook);
+
+    },7000);
 
 });
+// ==========================
+// LIBRO CERRADO
+// ==========================
+
+closedBook3D.addEventListener("click", () => {
+
+    closedBook3D.classList.add("opening");
+
+    setTimeout(() => {
+
+        showScreen(book);
+
+        currentPage = 0;
+
+        frontImage.src = pages[currentPage];
+
+        backImage.src = pages[currentPage];
+
+    },1200);
+
 });
