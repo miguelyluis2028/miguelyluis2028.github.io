@@ -1,0 +1,312 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
+    font-family:"Cinzel",serif;
+
+}
+
+.screen{
+
+    position:fixed;
+    inset:0;
+
+    display:none;
+
+    justify-content:center;
+    align-items:center;
+
+    background:#000;
+
+}
+
+.screen.active{
+
+    display:flex;
+
+}
+
+/*=========================
+PORTADA
+=========================*/
+
+#cover{
+
+    flex-direction:column;
+
+}
+
+.cover-image{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+#startButton{
+
+    position:absolute;
+
+    bottom:8%;
+
+    padding:18px 50px;
+
+    border:1px solid #777;
+
+    background:rgba(0,0,0,.35);
+
+    color:#d9d9d9;
+
+    letter-spacing:4px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+#startButton:hover{
+
+    background:#d9d9d9;
+    color:#000;
+
+}
+/*=========================
+PRÓLOGO
+=========================*/
+
+#prologue{
+
+    opacity:0;
+
+    transition:opacity 2s ease;
+
+}
+
+#prologue.active{
+
+    opacity:1;
+
+}
+
+.prologue-content{
+
+    max-width:900px;
+
+    padding:60px;
+
+    text-align:center;
+
+}
+
+.prologue-content h1{
+
+    color:#d9d9d9;
+
+    font-size:2.8rem;
+
+    letter-spacing:8px;
+
+}
+
+.prologue-content h2{
+
+    margin-top:15px;
+
+    color:#8d8d8d;
+
+    letter-spacing:4px;
+
+    font-size:1rem;
+
+}
+
+.prologue-content p{
+
+    margin-top:60px;
+
+    color:#d0d0d0;
+
+    font-size:1.25rem;
+
+    line-height:2;
+
+    letter-spacing:2px;
+
+}
+
+/*=========================
+LIBRO CERRADO
+=========================*/
+
+#closedBook{
+
+    flex-direction:column;
+
+    background:#050505;
+
+}
+
+#closedBook3D{
+
+    width:340px;
+
+    height:480px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:linear-gradient(
+        145deg,
+        #111,
+        #000,
+        #1b1b1b
+    );
+
+    border-radius:8px;
+
+    box-shadow:
+        0 25px 45px rgba(0,0,0,.65);
+
+    cursor:pointer;
+
+}
+
+#closedBook3D img{
+
+    width:150px;
+
+    filter:
+        drop-shadow(0 0 12px rgba(255,255,255,.25));
+
+}
+/*=========================
+LIBRO
+=========================*/
+
+#book{
+
+    background:#000;
+
+    perspective:2200px;
+
+}
+
+#bookContainer{
+
+    width:90vw;
+    height:90vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+}
+
+.page{
+
+    position:relative;
+
+    width:80vw;
+    max-width:1200px;
+
+    aspect-ratio:16/9;
+
+    transform-style:preserve-3d;
+
+    transition:transform .9s ease;
+
+}
+
+.page-face{
+
+    position:absolute;
+
+    inset:0;
+
+    backface-visibility:hidden;
+
+}
+
+.page-face.back{
+
+    transform:rotateY(180deg);
+
+}
+
+.page-face img{
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+}
+
+/*=========================
+CONTRAPORTADA
+=========================*/
+
+#backCover{
+
+    flex-direction:column;
+
+}
+
+.back-content{
+
+    text-align:center;
+
+}
+
+.back-content h1{
+
+    color:#d9d9d9;
+
+    font-size:3rem;
+
+    letter-spacing:10px;
+
+}
+
+.back-content h2{
+
+    color:#8d8d8d;
+
+    margin-top:18px;
+
+    letter-spacing:4px;
+
+}
+
+.back-content p{
+
+    margin-top:45px;
+
+    color:#cfcfcf;
+
+    line-height:2;
+
+    letter-spacing:2px;
+
+}
