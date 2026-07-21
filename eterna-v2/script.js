@@ -64,11 +64,17 @@ startButton.addEventListener("click", async ()=>{
 
 closedBook.addEventListener("click",()=>{
 
-    current=0;
+    cover.style.transform="rotateY(-165deg)";
 
-    loadSpread();
+    setTimeout(()=>{
 
-    show(screens.book);
+        current=0;
+
+        loadSpread();
+
+        show(screens.book);
+
+    },1800);
 
 });
 
@@ -137,8 +143,3 @@ music.addEventListener("ended",()=>{
 const closedBook = document.getElementById("closedBook3D");
 const cover = document.getElementById("bookCover");
 
-closedBook.addEventListener("click",()=>{
-
-    cover.style.transform="rotateY(-165deg)";
-
-});
