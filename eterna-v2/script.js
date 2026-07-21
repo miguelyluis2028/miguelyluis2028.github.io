@@ -72,7 +72,7 @@ closedBook3D.addEventListener("click",()=>{
 
         loadSpread();
 
-        show(screens.book);
+        show(screens.closedBook);
 
     },1800);
 
