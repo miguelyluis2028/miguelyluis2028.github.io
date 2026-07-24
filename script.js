@@ -69,6 +69,7 @@ startButton.addEventListener("click", async () => {
     setTimeout(() => {
 
         alert("Prólogo");
+console.log("Entrando al prólogo");
 showScreen(prologue);
 
     },2000);
