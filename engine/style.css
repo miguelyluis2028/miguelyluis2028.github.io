@@ -53,6 +53,9 @@ body{
     transform-origin:left center;
 
     transition:transform .8s ease;
+    
+    perspective:2500px;
+    will-change:transform;
 
 
 }
