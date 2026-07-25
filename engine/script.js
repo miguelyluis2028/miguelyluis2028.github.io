@@ -1,21 +1,19 @@
-const sheet = document.querySelector(".sheet");
+const page = document.querySelector(".page");
 
-let open = false;
+let opened = false;
 
-sheet.addEventListener("click", () => {
+page.addEventListener("click", () => {
 
-    if (!open){
+    if (opened){
 
-        sheet.style.transform = "rotateY(-180deg)";
-
-        open = true;
+        page.style.transform = "rotateY(0deg)";
 
     }else{
 
-        sheet.style.transform = "rotateY(0deg)";
-
-        open = false;
+        page.style.transform = "rotateY(-180deg)";
 
     }
+
+    opened = !opened;
 
 });
