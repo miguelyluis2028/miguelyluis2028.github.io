@@ -66,7 +66,7 @@ body{
 
     background:white;
 
-    backface-visibility:hidden;
+    backface-visibility:visible;
 }
 
 .front{
