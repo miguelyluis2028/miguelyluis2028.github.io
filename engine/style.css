@@ -38,6 +38,7 @@ body{
 
     width:100%;
     height:100%;
+    
 
 }
 .page{
@@ -46,16 +47,21 @@ body{
 
     width:100%;
     height:100%;
-
+    
     transform-style:preserve-3d;
 
     transform-origin:left center;
 
     transition:transform .8s ease;
 
+
 }
 .front,
 .back{
+
+     background:white;
+}
+.page-face{
 
     position:absolute;
 
@@ -63,12 +69,11 @@ body{
     height:100%;
 
     top:0;
+    left:0;
 
-    background:white;
+    backface-visibility:hidden;
 
-    backface-visibility:visible;
 }
-
 .front{
 
     left:0;
