@@ -62,7 +62,7 @@ function showScreen(screen) {
 startButton.addEventListener("click", async () => {
 
     try{
-        await bgMusic.play();
+        //await bgMusic.play();
     }catch(e){}
 
     cover.style.opacity = "0";
