@@ -350,6 +350,10 @@ LIBRO CERRADO
     inset:0;
 
     border-radius:8px;
+    
+    transform-origin:left center;
+    transform-style:preserve-3d;
+    transition:transform 1.8s ease;
 
     background:
     linear-gradient(
