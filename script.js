@@ -8,6 +8,7 @@
 const cover = document.getElementById("cover");
 const prologue = document.getElementById("prologue");
 const closedBook = document.getElementById("closedBook");
+const bookCover = document.getElementById("bookCover");
 const book = document.getElementById("book");
 const backCover = document.getElementById("backCover");
 
@@ -88,7 +89,7 @@ showScreen(prologue);
 
 closedBook3D.addEventListener("click", () => {
 
-    closedBook3D.classList.add("opening");
+    bookCover.classList.add("opening");
 
     setTimeout(() => {
 

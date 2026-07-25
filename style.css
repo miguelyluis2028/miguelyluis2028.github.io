@@ -375,7 +375,9 @@ LIBRO CERRADO
     align-items:center;
 
 }
-
+.bookCover.opening{
+    transform: rotateY(-170deg);
+}
 .bookLogo{
 
     width:140px;
