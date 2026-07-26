@@ -10,7 +10,7 @@ page.addEventListener("click", () => {
 
     }else{
 
-        page.style.transform = "rotateY(-180deg)";
+        page.style.transform = "rotateZ(20deg)";
 
     }
 

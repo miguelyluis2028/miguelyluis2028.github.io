@@ -41,6 +41,18 @@ body{
     
 
 }
+.left-page{
+
+    position:absolute;
+
+    left:0;
+
+    width:50%;
+    height:100%;
+
+    background:white;
+
+}
 .page{
 
     position:absolute;
