@@ -24,12 +24,16 @@ body{
 }
 
 #book{
+
     width:700px;
     height:500px;
 
     position:relative;
 
-    transform-style:preserve-3d;
+    display:flex;
+
+    perspective:2500px;
+
 }
 
 .sheet{
