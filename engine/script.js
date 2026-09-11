@@ -2,7 +2,11 @@ const page = document.querySelector(".page");
 
 let turned = false;
 
-page.addEventListener("click", () => {
+page.style.transform = "rotateY(0deg)";
+
+document.addEventListener("pointerdown", (event) => {
+    event.preventDefault();
+
     turned = !turned;
 
     if (turned) {
