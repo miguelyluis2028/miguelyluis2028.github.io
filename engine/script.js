@@ -1,17 +1,14 @@
 const page = document.querySelector(".page");
+const scene = document.querySelector("#scene");
 
 let turned = false;
 
-page.style.transform = "rotateY(0deg)";
+scene.addEventListener("click", () => {
+  turned = !turned;
 
-document.addEventListener("pointerdown", (event) => {
-    event.preventDefault();
-
-    turned = !turned;
-
-    if (turned) {
-        page.style.transform = "rotateY(-180deg)";
-    } else {
-        page.style.transform = "rotateY(0deg)";
-    }
+  if (turned) {
+    page.style.transform = "rotateY(-180deg)";
+  } else {
+    page.style.transform = "rotateY(0deg)";
+  }
 });
