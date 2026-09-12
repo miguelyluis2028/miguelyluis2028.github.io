@@ -89,7 +89,7 @@ display:block;
 
     transform-origin:left center;
 
-    transition:transform 1.15s cubic-bezier(0.22, 0.61, 0.36, 1);
+    transition:transform 1.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     filter:drop-shadow(0 0 12px rgba(0,0,0,.18));
     perspective:2500px;
     will-change:transform;
