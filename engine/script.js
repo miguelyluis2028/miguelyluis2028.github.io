@@ -8,8 +8,8 @@ for (let i = 1; i <= 20; i++) {
 }
 
 let current = 0;
-let turned = false;
 let bookStarted = false;
+let isAnimating = false;
 
 const frontImage = document.querySelector(".front img");
 const backImage = document.querySelector(".back img");
@@ -32,11 +32,11 @@ page.style.transform = "rotateY(0deg)";
 
 cover.addEventListener("pointerdown", (event) => {
   event.preventDefault();
+  event.stopPropagation();
 
   if (bookStarted) return;
 
   bookStarted = true;
-
   cover.style.display = "none";
 });
 
@@ -44,17 +44,26 @@ document.addEventListener("pointerdown", (event) => {
   event.preventDefault();
 
   if (!bookStarted) return;
+  if (isAnimating) return;
+  if (current >= images.length - 1) return;
 
-  if (!turned) {
-    if (current < images.length - 1) {
-      current++;
-      showSpread(current);
+  isAnimating = true;
 
-      page.style.transform = "rotateY(-180deg)";
-      turned = true;
-    }
-  } else {
+  page.style.transform = "rotateY(-180deg)";
+
+  setTimeout(() => {
+    current++;
+
+    showSpread(current);
+
+    page.style.transition = "none";
     page.style.transform = "rotateY(0deg)";
-    turned = false;
-  }
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        page.style.transition = "transform .8s ease";
+        isAnimating = false;
+      });
+    });
+  }, 800);
 });
