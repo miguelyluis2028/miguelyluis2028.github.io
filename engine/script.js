@@ -1,9 +1,12 @@
 const page = document.querySelector(".page");
-const scene = document.querySelector("#scene");
 
 let turned = false;
 
-scene.addEventListener("click", () => {
+page.style.transform = "rotateY(0deg)";
+
+document.addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+
   turned = !turned;
 
   if (turned) {
