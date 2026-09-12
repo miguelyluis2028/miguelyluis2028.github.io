@@ -1,4 +1,5 @@
 const page = document.querySelector(".page");
+const cover = document.querySelector("#cover");
 
 const images = [];
 
@@ -8,6 +9,7 @@ for (let i = 1; i <= 20; i++) {
 
 let current = 0;
 let turned = false;
+let bookStarted = false;
 
 const frontImage = document.querySelector(".front img");
 const backImage = document.querySelector(".back img");
@@ -28,8 +30,20 @@ showSpread(current);
 
 page.style.transform = "rotateY(0deg)";
 
+cover.addEventListener("pointerdown", (event) => {
+  event.preventDefault();
+
+  if (bookStarted) return;
+
+  bookStarted = true;
+
+  cover.style.display = "none";
+});
+
 document.addEventListener("pointerdown", (event) => {
   event.preventDefault();
+
+  if (!bookStarted) return;
 
   if (!turned) {
     if (current < images.length - 1) {
