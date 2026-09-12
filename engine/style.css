@@ -45,14 +45,35 @@ body{
 .left-page{
     position:absolute;
 
+
     left:0;
 
     width:50%;
     height:100%;
 
     background:white;
+    
+    overflow:hidden;
 }
-
+    .left-page img{
+  position:absolute;
+  top:0;
+  left:0;
+  width:200%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+} 
+.front img{
+position:absolute;
+top:0;
+left:-100%;
+width:200%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+  
 .page{
     position:absolute;
 
@@ -76,6 +97,7 @@ body{
 
 .page-face{
     position:absolute;
+    overflow:hidden;
 
     top:0;
     left:0;
@@ -88,11 +110,36 @@ body{
 }
 
 .front{
-    transform-origin:left center;
+  transform-origin:left center;
+  overflow:hidden;
 }
 
 .back{
     transform:rotateY(180deg);
 
-    transform-origin:right center;
+    transform-origin:left center;
+}
+.page-face img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.front img{
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:200%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+.back img{
+    position:absolute;
+    top:0;
+    left:0;
+    width:200%;
+    height:100%;
+    object-fit:cover;
+    display:block;
 }
