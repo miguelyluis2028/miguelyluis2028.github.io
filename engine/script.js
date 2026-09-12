@@ -65,5 +65,5 @@ document.addEventListener("pointerdown", (event) => {
         isAnimating = false;
       });
     });
-  }, 800);
+  }, 1300);
 });
