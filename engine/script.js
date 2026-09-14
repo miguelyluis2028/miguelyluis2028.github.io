@@ -1,4 +1,13 @@
 const cover = document.querySelector("#cover");
+const pageTurn = document.querySelector("#pageTurn");
+
+const spreadImage = document.querySelector("#spreadImage");
+const frontImage = document.querySelector("#frontImage");
+const backImage = document.querySelector("#backImage");
+
+/* ==============================
+   IMÁGENES
+================================ */
 
 const currentScene = document.querySelector(".current-scene");
 const nextScene = document.querySelector(".next-scene");
@@ -18,18 +27,18 @@ const backTurningBack = document.querySelector(".back-turning-back");
 
 const images = [];
 
-for (let i = 1; i <= 20; i++) {
+
+for (let i = 1; i <= 26; i++) {
     images.push(`../images/libro/pagina-${i}.png`);
 }
 /* ==============================
-   PRECARGAR TODAS LAS IMÁGENES
+   PRECARGAR TODAS LAS ESCENAS
 ================================ */
 
 images.forEach((src) => {
     const img = new Image();
     img.src = src;
 });
-
 /* ==============================
    ESTADO
 ================================ */
@@ -40,127 +49,33 @@ let isAnimating = false;
 
 const duration = 1550;
 
-
 /* ==============================
-   CAPAS DEL LIBRO
+   ESCENA ACTUAL
 ================================ */
 
-/*
-   Una capa es la escena que estamos viendo.
-   La otra queda preparada debajo.
+function showScene(index) {
 
-   Después de cada giro intercambiamos
-   sus papeles.
-*/
+    spreadImage.src = images[index];
 
-let activeScene = currentScene;
-let hiddenScene = nextScene;
+    frontImage.src = images[index];
 
-
-/* ==============================
-   IMÁGENES DE LAS CAPAS
-================================ */
-
-const activeImage =
-    activeScene.querySelector("img");
-
-const hiddenImage =
-    hiddenScene.querySelector("img");
-
-
-/* ==============================
-   IMÁGENES DE LAS HOJAS
-================================ */
-
-const turningFrontImage =
-    turningFront.querySelector("img");
-
-const turningBackImage =
-    turningBack.querySelector("img");
-
-const backTurningFrontImage =
-    backTurningFront.querySelector("img");
-
-const backTurningBackImage =
-    backTurningBack.querySelector("img");
-
-
-/* ==============================
-   PREPARAR ESCENA
-================================ */
-
-function prepareScenes() {
-
-    /*
-       La capa activa muestra la página actual.
-    */
-
-    activeScene.querySelector("img").src =
-        images[current];
-
-
-    /*
-       La capa escondida queda preparada
-       para la próxima página.
-    */
-
-    if (current < images.length - 1) {
-
-        hiddenScene.querySelector("img").src =
-            images[current + 1];
-
+    if (index < images.length - 1) {
+        backImage.src = images[index + 1];
     } else {
-
-        hiddenScene.querySelector("img").src =
-            images[current];
+        backImage.src = images[index];
     }
-
-
-    /*
-       La escena activa siempre está arriba.
-    */
-
-    activeScene.style.zIndex = "1";
-    hiddenScene.style.zIndex = "0";
 }
 
-
 /* ==============================
-   REINICIAR HOJA HACIA ADELANTE
+   INICIO
 ================================ */
 
-function resetForwardPage() {
+showScene(current);
 
-    turningPage.style.transition = "none";
-    turningPage.style.transform = "rotateY(0deg)";
-    turningPage.style.visibility = "hidden";
-}
-
+pageTurn.style.transform = "rotateY(0deg)";
 
 /* ==============================
-   REINICIAR HOJA HACIA ATRÁS
-================================ */
-
-function resetBackPage() {
-
-    backTurningPage.style.transition = "none";
-    backTurningPage.style.transform = "rotateY(0deg)";
-    backTurningPage.style.visibility = "hidden";
-}
-
-
-/* ==============================
-   ESTADO INICIAL
-================================ */
-
-prepareScenes();
-
-resetForwardPage();
-resetBackPage();
-
-
-/* ==============================
-   ABRIR PORTADA
+   ABRIR LIBRO
 ================================ */
 
 cover.addEventListener("click", (event) => {
@@ -175,36 +90,26 @@ cover.addEventListener("click", (event) => {
     cover.style.display = "none";
 });
 
-
 /* ==============================
-   CONTROL DEL LIBRO
+   PASAR PÁGINA
 ================================ */
 
-document.addEventListener("click", async (event) => {
-
-    event.preventDefault();
+document.addEventListener("click", (event) => {
 
     if (!bookStarted) return;
     if (isAnimating) return;
 
+    const book = document.querySelector("#book");
+    const rect = book.getBoundingClientRect();
 
-    /*
-       Mitad derecha = avanzar.
-       Mitad izquierda = regresar.
-    */
+    const middle = rect.left + rect.width / 2;
 
-    const screenMiddle =
-        window.innerWidth / 2;
+    /* Solo tocar el lado derecho
+       para avanzar. */
 
-    const goingForward =
-        event.clientX >= screenMiddle;
-
-
-    /* ==============================
-       AVANZAR
-    ============================== */
-
-    if (goingForward) {
+    if (event.clientX < middle) {
+        return;
+    }
 
     if (current >= images.length - 1) {
         return;
@@ -215,265 +120,59 @@ document.addEventListener("click", async (event) => {
     const next = current + 1;
 
     /* ==============================
-       PREPARAR Y DECODIFICAR
-       LA FOTO SIGUIENTE
+       PREPARAR GIRO
     ============================== */
 
-    const nextPhoto =
-        hiddenScene.querySelector("img");
+    frontImage.src = images[current];
+    backImage.src = images[next];
+    spreadImage.src = images[next];
+    pageTurn.style.visibility = "visible";
 
-    nextPhoto.src =
-        images[next];
-
-    if (nextPhoto.decode) {
-        await nextPhoto.decode();
-    }
-    /* ==============================
-       PREPARAR LA HOJA
-    ============================== */
-
-    turningFrontImage.src =
-        images[current];
-
-    turningBackImage.src =
-        images[next];
-
-    backTurningPage.style.visibility =
-        "hidden";
-
-    turningPage.style.visibility =
-        "visible";
-
-    turningPage.style.transition =
-        "none";
-
-    turningPage.style.transform =
-        "rotateY(0deg)";
-
+    pageTurn.style.transition = "none";
+    pageTurn.style.transform = "rotateY(0deg)";
 
     /* ==============================
-       COMENZAR EL GIRO
+       COMENZAR GIRO
     ============================== */
 
     requestAnimationFrame(() => {
 
         requestAnimationFrame(() => {
 
-            turningPage.style.transition =
+            pageTurn.style.transition =
                 "transform 1.55s cubic-bezier(0.25, 0.8, 0.25, 1)";
 
-            turningPage.style.transform =
+            pageTurn.style.transform =
                 "rotateY(-180deg)";
         });
     });
 
-
     /* ==============================
-   CAMBIO DE ESCENA
-   INMEDIATO
-================================ */
-
-current = next;
-
-/*
-   La página siguiente ya estaba
-   preparada debajo de la hoja.
-   Ahora pasa a ser la escena activa.
-*/
-
-const oldActive = activeScene;
-
-activeScene = hiddenScene;
-hiddenScene = oldActive;
-
-activeScene.style.zIndex = "1";
-hiddenScene.style.zIndex = "0";
-
-/*
-   Preparamos inmediatamente
-   la próxima imagen.
-*/
-
-if (current < images.length - 1) {
-
-    hiddenScene.querySelector("img").src =
-        images[current + 1];
-
-} else {
-
-    hiddenScene.querySelector("img").src =
-        images[current];
-}
-
-
-    /* ==============================
-       TERMINAR EL GIRO
+       TERMINAR GIRO
     ============================== */
 
     setTimeout(() => {
 
-        turningPage.style.visibility =
-            "hidden";
+    current = next;
 
-        resetForwardPage();
+    spreadImage.src = images[current];
 
-        isAnimating = false;
+    frontImage.src = images[current];
 
-    }, duration);
-
-    return;
-}
-
-    /* ==============================
-       REGRESAR
-    ============================== */
-
-    if (current <= 0) {
-        return;
+    if (current < images.length - 1) {
+        backImage.src = images[current + 1];
+    } else {
+        backImage.src = images[current];
     }
 
-    isAnimating = true;
+    pageTurn.style.visibility = "hidden";
 
-    const previous = current - 1;
+    pageTurn.style.transition = "none";
 
+    pageTurn.style.transform = "rotateY(0deg)";
 
-    /*
-       La hoja que regresa muestra
-       la página actual por delante
-       y la anterior por detrás.
-    */
+    isAnimating = false;
 
-    backTurningFrontImage.src =
-        images[current];
-
-    backTurningBackImage.src =
-        images[previous];
-
-
-    /*
-       La capa escondida será la página
-       anterior.
-    */
-
-    hiddenScene.querySelector("img").src =
-        images[previous];
-
-
-    /*
-       Mostramos la hoja de regreso.
-    */
-
-    backTurningPage.style.visibility =
-        "visible";
-
-    backTurningPage.style.transition =
-        "none";
-
-    backTurningPage.style.transform =
-        "rotateY(180deg)";
-
-
-    /*
-       Dejamos que el navegador registre
-       la posición inicial.
-    */
-
-    requestAnimationFrame(() => {
-
-        requestAnimationFrame(() => {
-
-            backTurningPage.style.transition =
-                "transform 1.55s cubic-bezier(0.25, 0.8, 0.25, 1)";
-
-            backTurningPage.style.transform =
-                "rotateY(0deg)";
-        });
-    });
-
-
-    /*
-       Cuando termina el regreso:
-       la página anterior se convierte
-       en la nueva escena activa.
-    */
-
-    setTimeout(() => {
-
-        current = previous;
-
-
-        /*
-           Intercambiamos las dos capas.
-        */
-
-        const oldActive =
-            activeScene;
-
-        activeScene =
-            hiddenScene;
-
-        hiddenScene =
-            oldActive;
-
-
-        /*
-           La nueva escena activa queda arriba.
-        */
-
-        activeScene.style.zIndex =
-            "1";
-
-        hiddenScene.style.zIndex =
-            "0";
-
-
-        /*
-           La nueva escena activa muestra
-           la página correcta.
-        */
-
-        activeScene.querySelector("img").src =
-            images[current];
-
-
-        /*
-           Preparamos la escena escondida
-           para la próxima página.
-        */
-
-        if (current < images.length - 1) {
-
-            hiddenScene.querySelector("img").src =
-                images[current + 1];
-
-        } else {
-
-            hiddenScene.querySelector("img").src =
-                images[current];
-        }
-
-
-        /*
-           Escondemos la hoja de regreso.
-        */
-
-        backTurningPage.style.visibility =
-            "hidden";
-
-
-        /*
-           La dejamos lista para otro regreso.
-        */
-
-        resetBackPage();
-
-
-        /*
-           Liberamos el control.
-        */
-
-        isAnimating = false;
-
-    }, duration);
+}, duration);
 
 });

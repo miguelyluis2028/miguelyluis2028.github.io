@@ -14,6 +14,8 @@ body{
 }
 
 #scene{
+    position:fixed;
+    inset:0;
     width:100vw;
     height:100vh;
 
@@ -21,77 +23,98 @@ body{
     justify-content:center;
     align-items:center;
 
-    perspective:2500px;
+    perspective:none;
+    background:#000;
 }
 
-#book{
-    width:700px;
-    height:500px;
 
+/* ==============================
+   LIBRO
+================================ */
+
+#book{
     position:relative;
 
-    display:flex;
- 
-    perspective:2500px;
+    width: 84vw;
+max-width: 900px;
+
+height: 64vh;
+max-height: 620px;
+
     transform-style:preserve-3d;
 }
 
-.scene-layer{
-    position:absolute;
-    top:0;
-    width:50%;
-    height:100%;
-    overflow:hidden;
-}
 
-.current-scene{
-    left:0;
+/* ==============================
+   SPREAD COMPLETO
+================================ */
+
+#spread{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#000;
+
     z-index:1;
 }
 
-.next-scene{
+
+#spreadImage{
+    position:absolute;
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+    display:block;
+}
+
+
+/* ==============================
+   HOJA QUE GIRA
+================================ */
+
+#pageTurn{
+    position:absolute;
+
+    top:0;
     left:50%;
-    z-index:2;
+
+    width:50%;
+    min-width:50%;
+    max-width:50%;
+    
+    box-sizing:border-box;
+    height:100%;
+
+    z-index:5;
+
+    transform-style:preserve-3d;
+    transform-origin:left center;
+
+    transition:
+        transform 1.55s cubic-bezier(0.25,0.8,0.25,1);
+        backface-visibility:hidden;
+
+    will-change:transform;
+
+    visibility:hidden;
 }
 
-.scene-layer img{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-  transition:none;
-  animation:none;
-}
 
-.turning-page{
-  position:absolute;
-  left:50%;
-  top:0;
-  width:50%;
-  height:100%;
-  z-index:3;
-  transform-style:preserve-3d;
-  transform-origin:left center;
-  transition:transform 1.55s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change:transform;
-  visibility:hidden;
-}
-.back-turning-page{
-  position:absolute;
-  left:0;
-  top:0;
-  width:50%;
-  height:100%;
-  z-index:4;
-  transform-style:preserve-3d;
-  transform-origin:right center;
-  transition:transform 1.55s cubic-bezier(0.25, 0.8, 0.25, 1);
-  will-change:transform;
-  visibility:hidden;
-}
+/* ==============================
+   CARAS DE LA HOJA
+================================ */
+
+.page-front,
+.page-back{
+    position:absolute;
 
 .back-turning-front,
 .back-turning-back{
@@ -105,89 +128,97 @@ body{
   background:#000;
 }
 
-.back-turning-front{
-  transform:rotateY(0deg);
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    backface-visibility:hidden;
+
+    background:#000;
 }
 
-.back-turning-back{
-  transform:rotateY(180deg);
+
+.page-front{
+    transform:rotateY(0deg);
 }
 
-.back-turning-front img,
-.back-turning-back img{
-  position:absolute;
-  top:0;
-  width:200%;
-  height:100%;
-  object-fit:cover;
-  display:block;
+
+.page-back{
+    transform:rotateY(180deg);
 }
 
-.back-turning-front img{
-  left:0;
+
+/* ==============================
+   IMAGEN DEL FRENTE
+================================ */
+
+#frontImage{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:200%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
 }
 
-.back-turning-back img{
-  left:-100%;
-}
-.turning-front,
-.turning-back{
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  overflow:hidden;
-  backface-visibility:hidden;
-  background:#000;
+
+/* ==============================
+   IMAGEN DEL REVERSO
+================================ */
+
+#backImage{
+    position:absolute;
+
+    top:0;
+    left:0;
+
+    width:200%;
+    height:100%;
+
+    object-fit:contain;
+
+    display:block;
 }
 
-.turning-front{
-  transform:rotateY(0deg);
-}
 
-.turning-back{
-  transform:rotateY(180deg);
-}
-
-.turning-front img,
-.turning-back img{
-  position:absolute;
-  top:0;
-  width:200%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-.turning-front img{
-  left:-100%;
-}
-
-.turning-back img{
-  left:0;
-}
-
-}
+/* ==============================
+   PORTADA
+================================ */
 
 #cover{
-  position:fixed;
-  inset:0;
-  width:100vw;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#000;
-  z-index:1000;
-  cursor:pointer;
+    position:fixed;
+
+    inset:0;
+
+    width:100vw;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:#000;
+
+    z-index:1000;
+
+    cursor:pointer;
 }
 
+
 #cover img{
-  display:block;
-  max-width:100%;
-  max-height:100%;
-  width:auto;
-  height:auto;
-  object-fit:contain;
+    display:block;
+
+    max-width:100%;
+    max-height:100%;
+
+    width:auto;
+    height:auto;
+
+    object-fit:contain;
 }
