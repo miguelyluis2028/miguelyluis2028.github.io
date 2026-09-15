@@ -6,6 +6,52 @@ const frontImage = document.querySelector("#frontImage");
 const backImage = document.querySelector("#backImage");
 
 /* ==============================
+   MÚSICA ETERNA
+================================ */
+
+const music = new Audio("eterna-music.mp3");
+
+music.loop = true;
+music.volume = 0.18;
+
+const musicButton = document.createElement("button");
+
+musicButton.innerHTML = "🔊";
+
+musicButton.setAttribute("aria-label", "Silenciar música");
+
+musicButton.style.position = "fixed";
+musicButton.style.right = "20px";
+musicButton.style.bottom = "20px";
+musicButton.style.zIndex = "9999";
+musicButton.style.width = "42px";
+musicButton.style.height = "42px";
+musicButton.style.borderRadius = "50%";
+musicButton.style.border = "1px solid rgba(255,255,255,0.35)";
+musicButton.style.background = "rgba(0,0,0,0.65)";
+musicButton.style.color = "#fff";
+musicButton.style.fontSize = "18px";
+musicButton.style.cursor = "pointer";
+musicButton.style.display = "none";
+
+document.body.appendChild(musicButton);
+
+musicButton.addEventListener("click", (event) => {
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (music.paused) {
+        music.play();
+        musicButton.innerHTML = "🔊";
+    } else {
+        music.pause();
+        musicButton.innerHTML = "🔇";
+    }
+
+});
+
+/* ==============================
    IMÁGENES
 ================================ */
 
@@ -88,6 +134,10 @@ cover.addEventListener("click", (event) => {
     bookStarted = true;
 
     cover.style.display = "none";
+
+    music.play();
+    musicButton.style.display = "block";
+
 });
 
 /* ==============================
@@ -104,10 +154,63 @@ document.addEventListener("click", (event) => {
 
     const middle = rect.left + rect.width / 2;
 
-    /* Solo tocar el lado derecho
-       para avanzar. */
+        /* ==============================
+       REGRESAR PÁGINA
+    ================================= */
 
     if (event.clientX < middle) {
+
+        if (current <= 0) {
+            return;
+        }
+
+        isAnimating = true;
+
+        const previous = current - 1;
+
+        frontImage.src = images[current];
+        backImage.src = images[previous];
+        spreadImage.src = images[previous];
+
+        pageTurn.style.visibility = "visible";
+
+        pageTurn.style.transition = "none";
+        pageTurn.style.transform = "rotateY(0deg)";
+
+        requestAnimationFrame(() => {
+
+            requestAnimationFrame(() => {
+
+                pageTurn.style.transition =
+                    "transform 1.55s cubic-bezier(0.25,0.8,0.25,1)";
+
+                pageTurn.style.transform =
+                    "rotateY(180deg)";
+            });
+        });
+
+        setTimeout(() => {
+
+            current = previous;
+
+            spreadImage.src = images[current];
+            frontImage.src = images[current];
+
+            if (current < images.length - 1) {
+                backImage.src = images[current + 1];
+            } else {
+                backImage.src = images[current];
+            }
+
+            pageTurn.style.visibility = "hidden";
+
+            pageTurn.style.transition = "none";
+            pageTurn.style.transform = "rotateY(0deg)";
+
+            isAnimating = false;
+
+        }, duration);
+
         return;
     }
 
