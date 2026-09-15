@@ -28,7 +28,7 @@ const backTurningBack = document.querySelector(".back-turning-back");
 const images = [];
 
 
-for (let i = 1; i <= 26; i++) {
+for (let i = 1; i <= 27; i++) {
     images.push(`../images/libro/pagina-${i}.png`);
 }
 /* ==============================
