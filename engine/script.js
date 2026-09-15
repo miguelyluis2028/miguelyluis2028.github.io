@@ -257,6 +257,14 @@ document.addEventListener("click", (event) => {
     setTimeout(() => {
 
     current = next;
+    if (current === images.length - 1) {
+
+    finalSparkle.classList.remove("show");
+
+    void finalSparkle.offsetWidth;
+
+    finalSparkle.classList.add("show");
+}
 
     spreadImage.src = images[current];
 
@@ -279,3 +287,13 @@ document.addEventListener("click", (event) => {
 }, duration);
 
 });
+
+/* ==============================
+   DESTELLO FINAL
+================================ */
+
+const finalSparkle = document.createElement("div");
+
+finalSparkle.id = "finalSparkle";
+
+document.body.appendChild(finalSparkle);

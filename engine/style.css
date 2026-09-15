@@ -222,3 +222,40 @@ max-height: 620px;
 
     object-fit:contain;
 }
+
+/* DESTELLO FINAL ETERNA */
+
+#finalSparkle {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    background:
+        radial-gradient(circle at center,
+        rgba(255,255,255,0.95) 0%,
+        rgba(210,210,210,0.35) 3%,
+        rgba(255,255,255,0.08) 10%,
+        transparent 25%);
+}
+
+#finalSparkle.show {
+    animation: eternaSparkle 1.2s ease-out forwards;
+}
+
+@keyframes eternaSparkle {
+    0% {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    35% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.15);
+    }
+}
